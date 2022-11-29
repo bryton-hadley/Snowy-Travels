@@ -3,19 +3,14 @@ const {DataTypes} = require('sequelize')
 const {sequelize} = require('../util/database')
 
 module.exports = {
-    Resort: sequelize.define('resort', {
+    TravelList: sequelize.define('travel_list', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true
         },
-        image: DataTypes.TEXT,
-        name: DataTypes.STRING,
-      price: DataTypes.INTEGER,
-      state: DataTypes.STRING,
-      city: DataTypes.STRING,
-      slopeCount: DataTypes.INTEGER,
-      lifts: DataTypes.INTEGER
+       
+        
     })
 }

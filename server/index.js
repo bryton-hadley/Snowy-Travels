@@ -9,7 +9,8 @@ const {sequelize} = require('./util/database')
 const { Resort } = require('./models/resort')
 const { User } = require('./models/user')
 const {seed} = require('./util/seed')
-const {getAllResorts, addResort, deleteResort} = require('./controllers/resorts')
+const {getAllResorts, addResort, removeResort, getCurrentUserResorts, addToTravelList} = require('./controllers/resorts')
+const { TravelList } = require('./models/travelList')
 
 const app = express()
 
@@ -19,6 +20,17 @@ app.use(cors())
 User.hasMany(Resort)
 Resort.belongsTo(User)
 
+User.hasMany(TravelList)
+Resort.hasMany(TravelList)
+TravelList.belongsTo(User)
+TravelList.belongsTo(Resort)
+
+const {register, login} = require('./controllers/authCtrl')
+const {isAuthenticated} = require('./middleware/isAuthenticated')
+
+
+app.post('/register', register)
+app.post('/login', login)
 // seeding my own api 
 app.post('/seed', seed)
 
@@ -26,9 +38,9 @@ app.post('/seed', seed)
 app.get("/resorts", getAllResorts)
 
 // endpoints
-// app.get("userresorts/:userId", )
-app.post('/resort', addResort)
-app.delete("/resort/:id", deleteResort)
+app.post('/userresort/:userId', isAuthenticated, addToTravelList)
+app.delete("/userresort/:id", isAuthenticated, removeResort)
+app.get("/userresort/:userId", isAuthenticated, getCurrentUserResorts)
 
 sequelize
     .sync()

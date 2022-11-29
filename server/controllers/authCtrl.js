@@ -19,15 +19,15 @@ const createToken = (username, id) => {
 
 module.exports = {
   register: async (req,res) => {
-    try {
-      const {username, password } = req.body
+    try { 
+      const {username, password }= req.body
       let foundUser = await User.findOne({where: {username}})
       if(foundUser){
         res.status(400).send('This username is taken, please register with a different username')
       } else {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
-        const newUser = await User.create({username, hashPass: hash, username})
+        const newUser = await User.create({username, hashedPass: hash, username})
         const token = createToken(newUser.dataValues.username, newUser.dataValues.id)
         const exp = Date.now() + 1000 * 60 * 60 * 48
         res.status(200).send({
@@ -45,14 +45,17 @@ module.exports = {
     }
   },
   login: async (req, res) => {
+    console.log('hit login authCtrl')
     try { 
       const {username, password} = req.body
       let foundUser = await User.findOne({where: {username}})
+      console.log(foundUser)
       if(foundUser) {
-
-        const isAuthenticated = bcrypt.compareSync(password, foundUser.hashPass)
+        console.log(foundUser)
+        const isAuthenticated = bcrypt.compareSync(password, foundUser.hashedPass)
 
         if(isAuthenticated) {
+          console.log('Authenticated')
           const token = createToken(foundUser.dataValues.username, foundUser.dataValues.id)
           const exp = Date.now() + 1000 * 60 * 60 * 48
           res.status(200).send({
