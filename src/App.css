@@ -114,6 +114,10 @@ header {
   margin: 0px;
 }
 
+.samewidth {
+  width: 33%;
+}
+
 .snowy-travels {
   display: flex;
   justify-content: center;

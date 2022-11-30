@@ -11,14 +11,14 @@ const Header = () => {
     const authCtx = useContext(AuthContext)
     return (
         <header>
-            <div>
+            <div className='samewidth'>
                 <img className='logo' src="https://media.istockphoto.com/id/165761516/vector/ski-rescue-vector-silhouette.jpg?s=612x612&w=0&k=20&c=hSHfeWAl4M-thwIQ566pL5RVQPmfQl-xr2XK5VI6Pzk=" />
             </div>
-            <div className='snowy-travels'>
+            <div className='snowy-travels samewidth'>
                 <h1>Snowy Travels</h1>
             </div>
 
-            <div>
+            <div className='samewidth'>
                 <nav>
                     {authCtx.token ? (
 
