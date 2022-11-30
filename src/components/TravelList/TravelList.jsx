@@ -45,9 +45,9 @@ const TravelList = () => {
     })
     return (
         <div>
-            <h1>Your Travel list</h1>
+            <h1 className="travel">Your Travel list</h1>
 
-            <div>
+            <div className="travel-display">
                 {resortsDisplay}
             </div>
         </div>

@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 
+
+
+
 import ResortCard from '../ResortCard/ResortCard'
 //Make a state value for the resorts 
 // write a function to get resorts put on state use a get request 
@@ -35,20 +38,26 @@ const Home = ({ travelList, addResort }) => {
         })
     return (
 
+        <main>
 
-        <section>
-            <span>
-                <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSreach(e.target.value)}
-                    placeholder="Search Resort:"
-                />
-                <div className='resort-display'>
-                    {resortDisplay ? resortDisplay : <h2>Ski Resort hasn't been added </h2>}
-                </div>
-            </span>
-        </section>
+            <section>
+
+                <span>
+
+                    <input
+                        className='search-bar'
+                        type="text"
+                        value={search}
+                        onChange={(e) => setSreach(e.target.value)}
+                        placeholder="Search Resort:"
+                    />
+                    <div className='resort-display'>
+                        {resortDisplay ? resortDisplay : <h2>Ski Resort hasn't been added </h2>}
+                    </div>
+
+                </span>
+            </section>
+        </main>
     )
 }
 

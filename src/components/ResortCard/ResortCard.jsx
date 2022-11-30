@@ -8,10 +8,10 @@ const ResortCard = ({ resort, addResort, removeFromTravelList, travelList, trave
 
     const button = !travelList ? (
 
-        <button onClick={() => addResort(resort)}>Add to list</button>
+        <button className='resort-btn' onClick={() => addResort(resort)}>Add to list</button>
     ) : (
 
-        <button onClick={() => removeFromTravelList(travelListId)}>Remove from list</button>
+        <button className='resort-btn' onClick={() => removeFromTravelList(travelListId)}>Remove from list</button>
 
     );
 

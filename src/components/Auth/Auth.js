@@ -31,30 +31,33 @@ const Auth = () => {
 
 
   return (
-    <div className='login-form'>
-      <h1>Welcome to our site! {register ? 'Register' : 'Login'} below!</h1>
-      {register ? (
-        <div>
+    <div className='login-container'>
 
-        <form onSubmit={e => handleAuth(e)}>
-          <input placeholder='username' onChange={e => setUsername(e.target.value)} value={username}/>
-          <input  type='password' placeholder='password' onChange={e => setPassword(e.target.value)} value={password} /> 
-          <button>Submit</button>    
-        </form>
+    <div className='login-form'>
+      <h1 className='login-header'>Welcome to our site! {register ? 'Register' : 'Login'} below!</h1>
+      {register ? (
+        
+        <div>
+          <form onSubmit={e => handleAuth(e)}>
+            <input placeholder='username' onChange={e => setUsername(e.target.value)} value={username}/>
+            <input  type='password' placeholder='password' onChange={e => setPassword(e.target.value)} value={password} /> 
+              <button className='btn submit-btn' >Submit</button>    
+          </form>
         </div>
       ) : (
+        
         <div>
-
-        <form onSubmit={e => handleAuth(e)}>
-          <input placeholder='username' onChange={e => setUsername(e.target.value)} value={username}/>
-          <input type='password' placeholder='password' onChange={e => setPassword(e.target.value)} value={password} /> 
-          <button>Submit</button>    
-        </form>
+          <form onSubmit={e => handleAuth(e)}>
+            <input placeholder='username' onChange={e => setUsername(e.target.value)} value={username}/>
+            <input type='password' placeholder='password' onChange={e => setPassword(e.target.value)} value={password} /> 
+            <button className='btn submit-btn'>Submit</button>    
+          </form>
         </div>
 
-      )}
-      <button onClick={() => setRegister(!register)}>{register ? "Login": "Register"}</button>
+)}
+      <button className='btn register-btn' onClick={() => setRegister(!register)}>{register ? "Login": "Register"}</button>
     </div>
+</div>
   )
 }
 
